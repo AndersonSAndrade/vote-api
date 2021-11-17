@@ -1,5 +1,9 @@
 
-CREATE SEQUENCE db_schedule_seq INCREMENT 1;
+CREATE SEQUENCE db_schedule_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9999999999
+    START 1;
 
 CREATE TABLE IF NOT EXISTS db_schedule
 (
