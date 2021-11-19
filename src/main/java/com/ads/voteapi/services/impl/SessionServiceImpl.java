@@ -1,5 +1,6 @@
 package com.ads.voteapi.services.impl;
 
+import com.ads.voteapi.common.param.OpenSessionParam;
 import com.ads.voteapi.common.type.SessionType;
 import com.ads.voteapi.domain.dto.ScheduleDTO;
 import com.ads.voteapi.domain.dto.SessionDTO;
@@ -10,6 +11,7 @@ import com.ads.voteapi.domain.repositories.ScheduleRepository;
 import com.ads.voteapi.domain.repositories.SessionRepository;
 import com.ads.voteapi.services.interfaces.SessionService;
 import com.ads.voteapi.shared.utils.DataConvertUtil;
+import com.ads.voteapi.shared.validations.SessionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -18,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +36,7 @@ import java.util.stream.Collectors;
 public class SessionServiceImpl implements SessionService {
     private static final Logger LOG = LoggerFactory.getLogger(SessionServiceImpl.class);
     private static final String SESSION_NOT_FOUND = "Session not found or does not exist.";
+    private static final String SCHEDULE_NOT_FOUND = "Schedule not found or does not exist.";
 
     private final SessionRepository sessionRepository;
     private final ScheduleRepository scheduleRepository;
@@ -57,13 +62,14 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     @Transactional
-    public SessionDTO openingSession(SessionDTO dto) {
+    public SessionDTO openingSession(OpenSessionParam param) {
         LOG.info("OPENING SESSION");
+        SessionDTO dto = validTimeInScheduleId(param);
         Session session = new Session();
         if(dto != null){
             ScheduleDTO scheduleDTO = scheduleRepository.findById(dto.getSchedule().getId())
                     .map(scheduleMapper::entityToDto)
-                    .orElseThrow(() -> new IllegalArgumentException(SESSION_NOT_FOUND));
+                    .orElseThrow(() -> new IllegalArgumentException(SCHEDULE_NOT_FOUND));
             dto.setSchedule(scheduleDTO);
 
             session = sessionMapper.dtoToEntity(dto);
@@ -71,6 +77,29 @@ public class SessionServiceImpl implements SessionService {
         }
 
         return sessionMapper.entityToDto(sessionRepository.save(session));
+    }
+
+    /**
+     * Validating parameter and if the Schedule Id was informed to open the session.
+     * @param param
+     * @return SessionDTO
+     * @author Anderson S. Andrade
+     */
+    private SessionDTO validTimeInScheduleId(OpenSessionParam param) {
+        SessionDTO dto = new SessionDTO();
+        if(param != null){
+            if(param.getIdSchedule() == null) throw new SessionException("The Statute id cannot be null or empty.");
+            ScheduleDTO scheduleDTO = new ScheduleDTO();
+            scheduleDTO.setId(param.getIdSchedule());
+            dto.setSchedule(scheduleDTO);
+            if(param.getTimeCloseSession() != null){
+                int time = param.getTimeCloseSession();
+                dto.setEndSession(Instant.now().plus(time, ChronoUnit.MINUTES));
+            }else{
+                dto.setEndSession(Instant.now().plus(1, ChronoUnit.MINUTES));
+            }
+        }
+        return dto;
     }
 
     @Override

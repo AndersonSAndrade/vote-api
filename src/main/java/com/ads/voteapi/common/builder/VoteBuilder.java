@@ -1,9 +1,10 @@
 package com.ads.voteapi.common.builder;
 
-import com.ads.voteapi.common.ResultPresenter;
+import com.ads.voteapi.common.presenter.ResultPresenter;
+import com.ads.voteapi.common.type.ConverterType;
 import com.ads.voteapi.common.type.VoteType;
-import com.ads.voteapi.domain.dto.SessionDTO;
 import com.ads.voteapi.domain.dto.VoteDTO;
+import com.ads.voteapi.shared.utils.DataConvertUtil;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -66,8 +67,8 @@ public class VoteBuilder {
         model.setId(1L);
         model.setSchedule(ScheduleBuilder.buildeScheduleDTOModel());
         model.setStatus(1);
-        model.setStartSession(Instant.now());
-        model.setEndSession(Instant.now().plus(10, ChronoUnit.MINUTES));
+        model.setStartSession(DataConvertUtil.convertToDateFormat(Instant.now(), ConverterType.DAY_MONTH_YEAR.getId()));
+        model.setEndSession(DataConvertUtil.convertToDateFormat(Instant.now().plus(1, ChronoUnit.MINUTES), ConverterType.DAY_MONTH_YEAR.getId()));
         model.setQntVoteYes(2);
         model.setQntVoteNo(1);
         model.setTotalVotes(3);

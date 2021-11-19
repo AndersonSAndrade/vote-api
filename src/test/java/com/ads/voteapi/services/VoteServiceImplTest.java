@@ -1,9 +1,8 @@
 package com.ads.voteapi.services;
 
-import com.ads.voteapi.common.ResultPresenter;
+import com.ads.voteapi.common.presenter.ResultPresenter;
 import com.ads.voteapi.common.builder.VoteBuilder;
 import com.ads.voteapi.domain.dto.VoteDTO;
-import com.ads.voteapi.domain.repositories.ScheduleRepository;
 import com.ads.voteapi.services.interfaces.VoteService;
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;

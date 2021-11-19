@@ -1,9 +1,7 @@
 package com.ads.voteapi.domain.mapper;
 
 import com.ads.voteapi.domain.dto.ResultVoteDTO;
-import com.ads.voteapi.domain.dto.SessionDTO;
 import com.ads.voteapi.domain.entity.ResultVote;
-import com.ads.voteapi.domain.entity.Session;
 import org.modelmapper.ModelMapper;
 
 /**

@@ -1,6 +1,7 @@
 package com.ads.voteapi.services.impl;
 
-import com.ads.voteapi.common.ResultPresenter;
+import com.ads.voteapi.common.presenter.ResultPresenter;
+import com.ads.voteapi.common.type.ConverterType;
 import com.ads.voteapi.common.type.SessionType;
 import com.ads.voteapi.common.type.ValidCpfType;
 import com.ads.voteapi.common.type.VoteType;
@@ -18,6 +19,7 @@ import com.ads.voteapi.domain.repositories.SessionRepository;
 import com.ads.voteapi.domain.repositories.VoteRepository;
 import com.ads.voteapi.services.integration.IntegrationService;
 import com.ads.voteapi.services.interfaces.VoteService;
+import com.ads.voteapi.shared.utils.DataConvertUtil;
 import com.ads.voteapi.shared.validations.SessionException;
 import com.ads.voteapi.shared.validations.VoteException;
 import lombok.RequiredArgsConstructor;
@@ -95,8 +97,8 @@ public class VoteServiceImpl implements VoteService {
      */
     private void converteToPresenter(ResultPresenter presenter, SessionDTO sessionDTO, ResultVote resultVote) {
         presenter.setSchedule(sessionDTO.getSchedule());
-        presenter.setStartSession(sessionDTO.getStartSession());
-        presenter.setEndSession(sessionDTO.getEndSession());
+        presenter.setStartSession(DataConvertUtil.convertToDateFormat(sessionDTO.getStartSession(), ConverterType.DAY_MONTH_YEAR_TIME.getId()));
+        presenter.setEndSession(DataConvertUtil.convertToDateFormat(sessionDTO.getEndSession(), ConverterType.DAY_MONTH_YEAR_TIME.getId()));
         presenter.setStatus(sessionDTO.getStatus());
         presenter.setId(resultVote.getId());
 

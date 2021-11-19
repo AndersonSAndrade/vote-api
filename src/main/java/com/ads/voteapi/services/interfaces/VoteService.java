@@ -1,6 +1,6 @@
 package com.ads.voteapi.services.interfaces;
 
-import com.ads.voteapi.common.ResultPresenter;
+import com.ads.voteapi.common.presenter.ResultPresenter;
 import com.ads.voteapi.domain.dto.VoteDTO;
 
 import java.util.List;

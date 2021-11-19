@@ -1,6 +1,7 @@
 package com.ads.voteapi.services;
 
 import com.ads.voteapi.common.builder.SessionBuilder;
+import com.ads.voteapi.common.param.OpenSessionParam;
 import com.ads.voteapi.domain.dto.SessionDTO;
 import com.ads.voteapi.services.interfaces.SessionService;
 import org.assertj.core.api.Assertions;
@@ -53,9 +54,9 @@ public class SessionServiceImplTest {
     @Test
     public void openingSession(){
         try {
-            SessionDTO dto = new SessionDTO();
-            Mockito.when(sessionService.openingSession(Mockito.any(dto.getClass()))).thenReturn(SessionBuilder.buildeSessionDTOModel());
-            SessionDTO modelDto = sessionService.openingSession(dto);
+            OpenSessionParam param = new OpenSessionParam();
+            Mockito.when(sessionService.openingSession(Mockito.any(OpenSessionParam.class))).thenReturn(SessionBuilder.buildeSessionDTOModel());
+            SessionDTO modelDto = sessionService.openingSession(param);
             Assertions.assertThat(modelDto).isNotNull();
         } catch (Exception e){
             Assert.fail("Method SessionService Save error: " + e.getMessage());

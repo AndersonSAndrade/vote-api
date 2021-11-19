@@ -1,12 +1,9 @@
 package com.ads.voteapi.api.resource;
 
-import com.ads.voteapi.common.builder.ScheduleBuilder;
 import com.ads.voteapi.common.builder.SessionBuilder;
 import com.ads.voteapi.common.builder.VoteBuilder;
-import com.ads.voteapi.domain.dto.ScheduleDTO;
-import com.ads.voteapi.domain.dto.SessionDTO;
+import com.ads.voteapi.common.param.OpenSessionParam;
 import com.ads.voteapi.domain.dto.VoteDTO;
-import com.ads.voteapi.services.interfaces.ScheduleService;
 import com.ads.voteapi.services.interfaces.SessionService;
 import com.ads.voteapi.services.interfaces.VoteService;
 import com.ads.voteapi.shared.utils.JsonUtil;
@@ -17,7 +14,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +53,13 @@ public class SessionResourceTest {
     }
 
     /**
-     * Teste the method {@link SessionResource#openingSession(SessionDTO, HttpServletResponse)}
+     * Teste the method {@link SessionResource#openingSession(OpenSessionParam, HttpServletResponse)}
      * @author Anderson S. Andrade
      */
     @Test
     public void openingSession() {
        try {
-           Mockito.when(sessionService.openingSession(Mockito.any(SessionDTO.class))).thenReturn(SessionBuilder.buildeSessionDTOModel());
+           Mockito.when(sessionService.openingSession(Mockito.any(OpenSessionParam.class))).thenReturn(SessionBuilder.buildeSessionDTOModel());
            Mockito.when(voteService.voting(Mockito.any(VoteDTO.class))).thenReturn(VoteBuilder.buildeResultPresenterModel());
            MvcResult mvcResult = getMvc()
                    .perform(MockMvcRequestBuilders.post("/v1/session/opening")
