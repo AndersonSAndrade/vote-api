@@ -1,13 +1,15 @@
 server:
   port: 8000
 spring:
+  jackson:
+    time-zone: America/Sao_Paulo
   application:
     name: vote-api
   datasource:
     username: vavlpmueglpnbv
     password: 6b65109e83a312771ce38705746caf06f433b81b107ed12471928bea353710a1
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-107-23-213-65.compute-1.amazonaws.com:5432/dc270mpfrf88jg?createDatabaseIfNotExist=true&useSSL=false
+    url: jdbc:postgresql://ec2-107-23-213-65.compute-1.amazonaws.com:5432/dc270mpfrf88jg?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=true
   jpa:
     show-sql: false
     hibernate:

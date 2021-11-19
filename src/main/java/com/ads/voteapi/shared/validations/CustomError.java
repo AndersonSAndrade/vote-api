@@ -3,8 +3,10 @@ package com.ads.voteapi.shared.validations;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,14 +19,24 @@ import java.util.List;
 public class CustomError {
 
     private Instant timestamp;
-    private Integer status;
-    private String msgUser;
-    private String msgDev;
+    private HttpStatus status;
+    private String message;
+    private String details;
+    private List<Errors> errors;
     private String path;
-    private List<Object> error;
 
-    public CustomError(String msgUser, String msgDev) {
-        this.msgUser = msgUser;
-        this.msgDev = msgDev;
+    public CustomError(HttpStatus status, String message, String details) {
+        super();
+        this.status = status;
+        this.message = message;
+        this.details = details;
     }
+
+    public CustomError(HttpStatus status, String message, List<Errors> errors) {
+        super();
+        this.status = status;
+        this.message = message;
+        this.errors = errors;
+    }
+
 }

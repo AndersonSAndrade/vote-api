@@ -1,0 +1,20 @@
+CREATE SEQUENCE db_result_vote_seq
+    INCREMENT 1
+    MINVALUE 1
+    MAXVALUE 9999999999
+    START 1;
+
+CREATE TABLE IF NOT EXISTS db_result_vote
+(
+    id BIGINT NOT NULL DEFAULT nextval('db_result_vote_seq'),
+    vote_id BIGINT NOT NULL,
+    schedule_id BIGINT NOT NULL,
+    session_id BIGINT NOT NULL,
+    voting INTEGER NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY(id),
+    FOREIGN KEY (vote_id) REFERENCES db_vote(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (schedule_id) REFERENCES db_schedule(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES db_session(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
