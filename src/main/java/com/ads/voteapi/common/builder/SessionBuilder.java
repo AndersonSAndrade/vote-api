@@ -1,6 +1,5 @@
 package com.ads.voteapi.common.builder;
 
-import com.ads.voteapi.domain.dto.ScheduleDTO;
 import com.ads.voteapi.domain.dto.SessionDTO;
 
 import java.time.Instant;

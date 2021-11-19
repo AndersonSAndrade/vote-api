@@ -60,7 +60,6 @@ public class Session {
     public void setCreatedAt() {
         this.createdAt = Instant.now();
         this.startSession = Instant.now();
-        this.endSession = Instant.now().plus(10, ChronoUnit.MINUTES);
     }
 
     @PreUpdate

@@ -6,7 +6,7 @@ import com.ads.voteapi.domain.entity.Vote;
 import lombok.Data;
 
 /**
- * @author : andersons.andrade
+ * @author : Anderson S. Andrade
  * @since : 18/11/21, quinta-feira
  **/
 @Data

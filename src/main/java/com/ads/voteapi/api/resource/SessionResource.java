@@ -1,8 +1,8 @@
 package com.ads.voteapi.api.resource;
 
 import com.ads.voteapi.api.events.ResourceCreatingEvent;
-import com.ads.voteapi.common.ResultPresenter;
-import com.ads.voteapi.domain.dto.ResultVoteDTO;
+import com.ads.voteapi.common.presenter.ResultPresenter;
+import com.ads.voteapi.common.param.OpenSessionParam;
 import com.ads.voteapi.domain.dto.SessionDTO;
 import com.ads.voteapi.domain.dto.VoteDTO;
 import com.ads.voteapi.services.interfaces.SessionService;
@@ -67,7 +67,7 @@ public class SessionResource {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = SessionDTO.class))),
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content)})
     @PostMapping("/opening")
-    public ResponseEntity<SessionDTO> openingSession(@Validated @RequestBody SessionDTO dto, HttpServletResponse response) {
+    public ResponseEntity<SessionDTO> openingSession(@Validated @RequestBody OpenSessionParam dto, HttpServletResponse response) {
         SessionDTO sessionDTO = sessionService.openingSession(dto);
         publisher.publishEvent(new ResourceCreatingEvent(this, response, sessionDTO.getId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(sessionDTO);

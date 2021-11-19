@@ -1,18 +1,9 @@
 # Projeto API Votação por associado
 #### VOTE API
 
-## Processos
-- [x] Criação da base do projeto API.
-- [ ] Configurações, Profiles Developer e Product.
-- [ ] Criando Entidades.
-- [ ] Criando Script SQL com flyway
-- [ ] Criando Repositorios e JPARepository e Trabalhando com JPA.
-- [ ] Criando Controladores e Classe de Serviço.
-- [ ] Criando Exception Personalizada, Implementando Serviço, 
-- [ ] Validação de dados, Starter Validation, Bean Validation, Validando Entidades, Criação de annotation de validação customizada e intercionalização.
-- [ ] Documentando código com Swagger.
-- [ ] Implemantando Testes Unitários.
-- [ ] Subindo Aplicação para nuvem.
+## Projeto
+A api se encontra no heroku já com a base de dados e pode ser rodada e pode ser iniciada localmente.
+
 
 ## Recomendações
 #### Projeto*Projeto feito com:

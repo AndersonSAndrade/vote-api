@@ -1,27 +1,26 @@
 package com.ads.voteapi.common.type;
 
-import java.text.SimpleDateFormat;
-
 /**
- * @author : andersons.andrade
+ * @author : Anderson S. Andrade
  * @since : 18/11/21, quinta-feira
  **/
 public enum ConverterType {
 
-    DAY_MONTH_YEAR(new SimpleDateFormat("dd/MM/yyyy")),
-    YEAR_MONTH_DAY(new SimpleDateFormat("yyyy/MM/dd"));
+    DAY_MONTH_YEAR("dd/MM/yyyy"),
+    DAY_MONTH_YEAR_TIME("dd/MM/yyyy HH:mm"),
+    YEAR_MONTH_DAY("yyyy/MM/dd");
 
-    private final SimpleDateFormat id;
+    private final String id;
 
-    ConverterType(SimpleDateFormat id){
+    ConverterType(String id){
         this.id = id;
     }
 
-    public SimpleDateFormat getId() {
+    public String getId() {
         return id;
     }
 
-    public SimpleDateFormat getValue() {
+    public String getValue() {
         return id;
     }
 }

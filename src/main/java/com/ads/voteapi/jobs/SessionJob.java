@@ -1,12 +1,8 @@
 package com.ads.voteapi.jobs;
 
-import com.ads.voteapi.common.type.SessionType;
 import com.ads.voteapi.domain.dto.SessionDTO;
 import com.ads.voteapi.domain.mapper.SessionMapper;
-import com.ads.voteapi.domain.repositories.SessionRepository;
-import com.ads.voteapi.services.impl.SessionServiceImpl;
 import com.ads.voteapi.services.interfaces.SessionService;
-import com.ads.voteapi.shared.utils.DataConvertUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -17,16 +13,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.chrono.ChronoZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * Job responsible for closing expired session

@@ -1,9 +1,7 @@
-package com.ads.voteapi.common;
+package com.ads.voteapi.common.presenter;
 
 import com.ads.voteapi.domain.dto.ScheduleDTO;
 import lombok.Data;
-
-import java.time.Instant;
 
 /**
  * @author : Anderson S.Andrade
@@ -13,8 +11,8 @@ import java.time.Instant;
 public class ResultPresenter {
     private Long id;
     private Integer status;
-    private Instant startSession;
-    private Instant endSession;
+    private String startSession;
+    private String endSession;
     private ScheduleDTO schedule;
     private Integer qntVoteYes;
     private Integer qntVoteNo;
