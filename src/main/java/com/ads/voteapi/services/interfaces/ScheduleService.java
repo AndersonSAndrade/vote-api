@@ -3,7 +3,6 @@ package com.ads.voteapi.services.interfaces;
 import com.ads.voteapi.domain.dto.ScheduleDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author : Anderson S. Andrade

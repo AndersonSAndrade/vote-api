@@ -1,6 +1,6 @@
-package com.ads.voteapi.shared.listeners;
+package com.ads.voteapi.api.events.listeners;
 
-import com.ads.voteapi.shared.events.ResourceCreatingEvent;
+import com.ads.voteapi.api.events.ResourceCreatingEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 

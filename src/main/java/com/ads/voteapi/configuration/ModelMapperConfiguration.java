@@ -1,6 +1,9 @@
 package com.ads.voteapi.configuration;
 
+import com.ads.voteapi.domain.mapper.ResultVoteMapper;
 import com.ads.voteapi.domain.mapper.ScheduleMapper;
+import com.ads.voteapi.domain.mapper.SessionMapper;
+import com.ads.voteapi.domain.mapper.VoteMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +25,19 @@ public class ModelMapperConfiguration {
         return new ScheduleMapper();
     }
 
+    @Bean
+    public SessionMapper sessionMapper(){
+        return new SessionMapper();
+    }
+
+    @Bean
+    public VoteMapper voteMapper(){
+        return new VoteMapper();
+    }
+
+    @Bean
+    public ResultVoteMapper resultVoteMapper(){
+        return new ResultVoteMapper();
+    }
 
 }

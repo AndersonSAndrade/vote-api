@@ -1,4 +1,4 @@
-package com.ads.voteapi.shared.events;
+package com.ads.voteapi.api.events;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;

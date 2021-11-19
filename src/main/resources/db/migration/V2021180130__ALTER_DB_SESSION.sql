@@ -1,0 +1,4 @@
+ALTER TABLE db_session ADD COLUMN status INTEGER NOT NULL DEFAULT 1;
+
+
+
